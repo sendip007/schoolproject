@@ -1,0 +1,34 @@
+exports.mockArticles =[
+    {
+        title:'title',
+        body:'body',
+        tags:'tags',
+        subtitle:'subtitle',
+        timestamp:'timestamp',
+        author:'author',
+        publication:'author',
+        related:'related'
+    },
+    {   
+        body:'body'
+    },
+    {
+        tags:'tags'
+    },
+    {
+        subtitle:'subtitle'
+    },  
+    {
+        timestamp:'timestamp'
+    },
+    {
+        author:'author'
+    },
+    {
+        publication:'author'
+    },
+    {
+        related:'related'
+    }
+
+]
