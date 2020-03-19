@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+	table {border:1px;}
+	p {color:blue;}
+</style>
+  <script type='text/javascript'>
+	$(function(){
+		$('#searchButton').on('click',function(){
+			var searchStr = $('#searchString').val();
+			$('#result').html("");
+			
+			$.get('http://localhost:3000/news?q='+searchStr,function(resp){
+				
+				var content = "<table class='table'>";
+				var json = resp;
+				var messages = json.message.articles;
+				for(i=0; i<messages.length; i++){
+					var obj = messages[i];
+					content += '<tr><td>' + obj.title +  i + '</td></tr>';
+				}
+				content += "</table>"
+
+				$('#result').html(content);
+			});
+		});
+	});
+  </script>
+</head>
+<body>
+
+<div class="container">
+ Search : <input name='search' id= 'searchString'/>
+ <button id='searchButton'>Search</button>
+ <br><br><br>
+ <div id = 'result'>
+ 
+ </div>
+</div>
+
+</body>
+</html>

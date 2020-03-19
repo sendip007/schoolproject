@@ -5,12 +5,16 @@ const app = express()
 const port = 3000
 const https = require('https');
 const request = require('request');
+var path = require('path');
 
-app.get('/', (req, res) => res.send('The server is live'))
+//app.get('/', (req, res) => res.send('The server is live'))
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
+});
 app.get('/news', (req, res) =>{
     let queryParams=req.query
     if (queryParams.hasOwnProperty('q')){
-        request('https://newsapi.org/v2/top-headlines?category=entertainment&language=en&apiKey=4e96082c9ca2451ea7bbdffc2078039a', { json: true }, (err, _res, body) => {
+        request('https://newsapi.org/v2/top-headlines?q='+req.query.q+'&language=en&apiKey=4e96082c9ca2451ea7bbdffc2078039a', { json: true }, (err, _res, body) => {
         if (err) { return console.log(err); }
         // url=body.url
         // exp=body.explanation
